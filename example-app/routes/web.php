@@ -17,10 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('test', function (){
-    return('test page');
-});
+Route::get('/test', 'App\Http\Controllers\TestPageController@test');
 
-Route::get("example-page", function (){
-    return('example page');
-});
+Route::get("/example-page", 'App\Http\Controllers\ExamplePageController@examplePage');
+
+Route::get('/contact', 'App\Http\Controllers\ContactPageController@contactPage');
+
+Route::get('/about-us', 'App\Http\Controllers\AboutUsPageController@aboutUSPage');

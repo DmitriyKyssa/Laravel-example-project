@@ -152,14 +152,14 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "D:/Baykus",
+    "git-widget-placeholder": "develop",
+    "last_opened_file_path": "D:/Laravel-example/example-app",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.webide.settings.project.settings.php",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -179,7 +179,9 @@
       <updated>1698154400868</updated>
       <workItem from="1698154401901" duration="181000" />
       <workItem from="1698162955546" duration="635000" />
-      <workItem from="1698231388263" duration="1867000" />
+      <workItem from="1698231388263" duration="2276000" />
+      <workItem from="1698233888470" duration="222000" />
+      <workItem from="1698234121412" duration="660000" />
     </task>
     <servers />
   </component>
@@ -191,7 +193,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="develop" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
