@@ -8,5 +8,6 @@ class ContactPageController extends Controller
 {
     public function contactPage(){
         return 'This is contact page';
+        var_dump();
     }
 }

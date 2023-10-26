@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/product', 'App\Http\Controllers\ProductController@index');
+
 Route::get('/test', 'App\Http\Controllers\TestPageController@test');
 
 Route::get("/example-page", 'App\Http\Controllers\ExamplePageController@examplePage');

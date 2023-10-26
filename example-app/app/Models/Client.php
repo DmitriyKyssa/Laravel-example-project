@@ -9,3 +9,4 @@ class Client extends Model
 {
     use HasFactory;
 }
+
