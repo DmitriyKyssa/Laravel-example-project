@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Test;
 use Illuminate\Http\Request;
 
 class TestPageController extends Controller
 {
     public function test(){
-        return 'test page';
+        $test = Test::find(1);
+        dump($test);
     }
 }
