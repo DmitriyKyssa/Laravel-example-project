@@ -21,6 +21,8 @@ return new class extends Migration
             $table->integer('price');
             $table->boolean('is_published')->default(1);
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 
