@@ -8,16 +8,16 @@
     <title>Document</title>
 </head>
 <body>
-    <div>
-        <nav>
-            <ul>
-                <li><a href="{{ route('home.index') }}">Home</a></li>
-                <li><a href="{{ route('contact.index') }}">Contact</a></li>
-                <li><a href="{{ route('about.index') }}">About</a></li>
-                <li><a href="{{ route('test.index') }}">Test</a></li>
-            </ul>
-        </nav>
-    </div>
+{{--    <div>--}}
+{{--        <nav>--}}
+{{--            <ul>--}}
+{{--                <li><a href="{{ route('home.index') }}">Home</a></li>--}}
+{{--                <li><a href="{{ route('contact.index') }}">Contact</a></li>--}}
+{{--                <li><a href="{{ route('about.index') }}">About</a></li>--}}
+{{--                <li><a href="{{ route('test.index') }}">Test</a></li>--}}
+{{--            </ul>--}}
+{{--        </nav>--}}
+{{--    </div>--}}
     @yield('content')
 </body>
 </html>
