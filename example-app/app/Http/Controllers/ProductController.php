@@ -9,14 +9,41 @@ class ProductController extends Controller
 {
     public function index(){
         $product = Product::all();
-
         return view('product.index', compact('product'));
-//        dump($product);
-//        dump($product->id);
-//        dump($product->title);
-//        dump($product->description);
-//        dump($product->price);
-//        dump($product->image);
-//        dump($product->is_published);
+    }
+
+    public function create(){
+
+        return view('product.create');
+    }
+
+    public function store(){
+        $data = request()->validate([
+            "title" => "string",
+            "description" => "string",
+            "price" => "integer",
+            "image" => "string"
+        ]);
+        Product::create($data);
+        return redirect()->route('product.index');
+    }
+
+    public function show(Product $product){
+        return view('product.show', compact('product'));
+    }
+
+    public function edit(Product $product){
+        return view('product.edit', compact('product'));
+    }
+
+    public function update(Product $product){
+        $data = request()->validate([
+            "title" => "string",
+            "description" => "string",
+            "price" => "integer",
+            "image" => "string"
+        ]);
+        $product::update($data);
+        return redirect()->route('products.show', $product->id);
     }
 }
