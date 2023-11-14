@@ -9,7 +9,12 @@ class ProductController extends Controller
 {
     public function index(){
         $product = Product::all();
-        return view('product.index', compact('product'));
+//        return view('product.index', compact('product'));
+//        $brand = Brand::find(2);
+//        dd($brand);
+//        dd($brand->products);
+        $product = Product::find(1);
+        dd($product->brand);
     }
 
     public function create(){
