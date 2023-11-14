@@ -23,12 +23,6 @@ return new class extends Migration
             $table->timestamps();
 
             $table->softDeletes();
-
-            $table->unsignedBigInteger('brand_id')->nullable();
-
-            $table->index('brand_id', 'product_brand_idx');
-
-            $table->foreign('brand_id', 'product_brand_fk')->on('brands')->references('id');
         });
     }
 
