@@ -24,7 +24,7 @@ Route::post('/products', 'App\Http\Controllers\ProductController@store')->name('
 Route::get('/products/{product}', 'App\Http\Controllers\ProductController@show')->name('products.show');
 Route::get('/products/{product}/edit', 'App\Http\Controllers\ProductController@edit')->name('products.edit');
 Route::patch('/products/{product}', 'App\Http\Controllers\ProductController@update')->name('products.update');
-Route::delete('/products/{product}', 'App\Http\Controllers\ProductController@edestroy')->name('products.destroy');
+Route::delete('/products/{product}', 'App\Http\Controllers\ProductController@destroy')->name('products.destroy');
 
 
 // Routes for test page

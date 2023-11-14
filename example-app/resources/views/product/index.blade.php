@@ -8,7 +8,8 @@
                     <th scope="col">Навзвание продукта:</th>
                     <th scope="col">Описание:</th>
                     <th scope="col">Цена:</th>
-                    <th scope="col">Детали товара</th>
+                    <th></th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -18,7 +19,17 @@
                     <td>{{$item->title}}</td>
                     <td>{{$item->description}}</td>
                     <td>{{$item->price}}$</td>
-                    <td><a href="{{route('products.show', $item->id)}}"><img class="text-white bg-dark" style="width: 30px" src="{{asset('img/info.jpg')}}" alt="Watch details"></a></td>
+                    <td>
+                        <a href="{{route('products.show', $item->id)}}"><img class="text-white bg-dark" style="width: 30px" src="{{asset('img/info.png')}}" alt="Watch details"></a>
+                        <a class="m-1" href="{{route('products.edit', $item->id)}}"><img class="text-white bg-dark" style="width: 30px" src="{{asset('img/edit.png')}}" alt="Edit product"></a>
+                    </td>
+                    <td>
+                        <form action="{{route('products.destroy', $item->id)}}" method="post">
+                            @csrf
+                            @method('delete')
+                            <input class="btn btn-danger" type="submit" value="Удалить продукт">
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
                 </tbody>

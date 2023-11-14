@@ -13,7 +13,6 @@ class ProductController extends Controller
     }
 
     public function create(){
-
         return view('product.create');
     }
 
@@ -25,7 +24,7 @@ class ProductController extends Controller
             "image" => "string"
         ]);
         Product::create($data);
-        return redirect()->route('product.index');
+        return redirect()->route('products.index');
     }
 
     public function show(Product $product){
@@ -43,7 +42,12 @@ class ProductController extends Controller
             "price" => "integer",
             "image" => "string"
         ]);
-        $product::update($data);
+        $product->update($data);
         return redirect()->route('products.show', $product->id);
+    }
+
+    public function destroy(Product $product){
+        $product->delete();
+        return redirect()->route('products.index');
     }
 }
