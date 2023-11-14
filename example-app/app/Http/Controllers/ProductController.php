@@ -2,20 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Brand;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     public function index(){
-//        $product = Product::all();
-//        return view('product.index', compact('product'));
-//        $brand = Brand::find(2);
-//        dd($brand);
-//        dd($brand->products);
-        $product = Product::find(1);
-        dd($product->brand);
+        $product = Product::all();
+        return view('product.index', compact('product'));
     }
 
     public function create(){
