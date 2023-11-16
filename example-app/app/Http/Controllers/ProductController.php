@@ -3,18 +3,53 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     public function index(){
-        $product = Product::find(1);
-        dump($product);
-        dump($product->id);
-        dump($product->image);
-        dump($product->title);
-        dump($product->description);
-        dump($product->price);
-        dump($product->is_published);
+        $product = Product::all();
+        return view('product.index', compact('product'));
+
+    }
+
+    public function create(){
+        return view('product.create');
+    }
+
+    public function store(){
+        $data = request()->validate([
+            "title" => "string",
+            "description" => "string",
+            "price" => "integer",
+            "image" => "string"
+        ]);
+        Product::create($data);
+        return redirect()->route('products.index');
+    }
+
+    public function show(Product $product){
+        return view('product.show', compact('product'));
+    }
+
+    public function edit(Product $product){
+        return view('product.edit', compact('product'));
+    }
+
+    public function update(Product $product){
+        $data = request()->validate([
+            "title" => "string",
+            "description" => "string",
+            "price" => "integer",
+            "image" => "string"
+        ]);
+        $product->update($data);
+        return redirect()->route('products.show', $product->id);
+    }
+
+    public function destroy(Product $product){
+        $product->delete();
+        return redirect()->route('products.index');
     }
 }

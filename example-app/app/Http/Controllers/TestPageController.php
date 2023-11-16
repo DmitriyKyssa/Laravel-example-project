@@ -9,9 +9,11 @@ class TestPageController extends Controller
 {
     public function index(){
         $test = Test::all();
-        foreach ($test as $tests){
+
+        return view('test',compact('test'));
+/*        foreach ($test as $tests){
             dump($tests->title);
-        }
+        }*/
 //        dump($test);
     }
     public function create(){
@@ -47,4 +49,33 @@ class TestPageController extends Controller
 //        $post->restore();
 //        dd('restored');
     }
+
+    public function firstOrCreate(){
+        $post = Test::firstOrCreate(
+            [
+                'title' => 'Another title created in php storm'
+            ],
+            [
+                'title' => 'New title created in php storm',
+                'true' => 1,
+            ]
+        );
+        dump($post->title);
+        dd('first or create');
+    }
+
+    public function updateOrCreate(){
+        $post = Test::updateOrCreate(
+            [
+                'title' => 'Updated title'
+            ],
+            [
+                'title' => 'Updated title 123',
+                'true' => 1,
+            ]
+        );
+        dump($post->title);
+        dd('update or create');
+    }
+
 }
