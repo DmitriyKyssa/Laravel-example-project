@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Tag;
 use Illuminate\Http\Request;
@@ -15,7 +16,8 @@ class ProductController extends Controller
     }
 
     public function create(){
-        return view('product.create');
+        $brands = Brand::all();
+        return view('product.create', compact('brands'));
     }
 
     public function store(){
@@ -23,18 +25,22 @@ class ProductController extends Controller
             "title" => "string",
             "description" => "string",
             "price" => "integer",
-            "image" => "string"
+            "image" => "string",
+            "brand_id" => "",
         ]);
         Product::create($data);
         return redirect()->route('products.index');
     }
 
     public function show(Product $product){
-        return view('product.show', compact('product'));
+        $brands = Brand::all();
+//        dd($brands);
+        return view('product.show', compact('product', 'brands'));
     }
 
     public function edit(Product $product){
-        return view('product.edit', compact('product'));
+        $brands = Brand::all();
+        return view('product.edit', compact('product', 'brands'));
     }
 
     public function update(Product $product){
@@ -42,7 +48,8 @@ class ProductController extends Controller
             "title" => "string",
             "description" => "string",
             "price" => "integer",
-            "image" => "string"
+            "image" => "string",
+            "brand_id" => "",
         ]);
         $product->update($data);
         return redirect()->route('products.show', $product->id);

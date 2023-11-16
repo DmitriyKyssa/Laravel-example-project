@@ -8,6 +8,7 @@
                 <th scope="col">Навзвание продукта:</th>
                 <th scope="col">Описание:</th>
                 <th scope="col">Цена:</th>
+                <th scope="col">Brand:</th>
             </tr>
             </thead>
             <tbody>
@@ -16,6 +17,7 @@
                     <td>{{$product->title}}</td>
                     <td>{{$product->description}}</td>
                     <td>{{$product->price}}$</td>
+                    <td>{{$product->brand->title}}</td>
                 </tr>
             </tbody>
         </table>
