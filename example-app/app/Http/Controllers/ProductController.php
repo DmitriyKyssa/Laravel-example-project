@@ -17,7 +17,8 @@ class ProductController extends Controller
 
     public function create(){
         $brands = Brand::all();
-        return view('product.create', compact('brands'));
+        $tags = Tag::all();
+        return view('product.create', compact('brands', 'tags'));
     }
 
     public function store(){
@@ -27,8 +28,13 @@ class ProductController extends Controller
             "price" => "integer",
             "image" => "string",
             "brand_id" => "",
+            'tags' => '',
         ]);
-        Product::create($data);
+        $tags = $data['tags'];
+        unset($data['tags']);
+        $product = Product::create($data);
+
+        $product->tags()->attach($tags);
         return redirect()->route('products.index');
     }
 
