@@ -23,7 +23,7 @@ class ProductController extends Controller
 
     public function store(){
         $data = request()->validate([
-            "title" => "string",
+            "title" => "required|string",
             "description" => "string",
             "price" => "integer",
             "image" => "string",
@@ -39,14 +39,13 @@ class ProductController extends Controller
     }
 
     public function show(Product $product){
-        $brands = Brand::all();
-//        dd($brands);
-        return view('product.show', compact('product', 'brands'));
+        return view('product.show', compact('product',  ));
     }
 
     public function edit(Product $product){
         $brands = Brand::all();
-        return view('product.edit', compact('product', 'brands'));
+        $tags = Tag::all();
+        return view('product.edit', compact('product', 'brands', 'tags'));
     }
 
     public function update(Product $product){
@@ -56,9 +55,18 @@ class ProductController extends Controller
             "price" => "integer",
             "image" => "string",
             "brand_id" => "",
+            'tags' => '',
         ]);
+        $tags = $data['tags'];
+        unset($data['tags']);
+
         $product->update($data);
+
+        $product->tags()->sync($tags);
         return redirect()->route('products.show', $product->id);
+
+
+
     }
 
     public function destroy(Product $product){

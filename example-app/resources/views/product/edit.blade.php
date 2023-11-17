@@ -28,6 +28,22 @@
                     @endforeach
                 </select>
             </div>
+            <div class="form-group">
+                <label for="tags">Tags</label>
+                <select multiple class="form-control" id="tags" name="tags[]">
+                    @foreach($tags as $tag)
+                        <option
+                            @foreach($product->tags as $productTag)
+                                {{$tag->id === $productTag->id ? 'selected' : ''}}
+                            @endforeach
+                            value="{{$tag->id}}"
+
+                        >
+                            {{$tag->title}}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
             <div class="mt-3">
                 <button type="submit" class="btn btn-dark">Сохранить</button>
                 <button type="button" class="btn btn-warning"><a class="text-decoration-none text-white" href="{{route('products.index')}}">Назад</a></button>
