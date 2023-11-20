@@ -34,6 +34,7 @@
                 @endforeach
                 </tbody>
             </table>
+            {{ $product->links() }}
         <button type="button" class="btn btn-primary"><a class="text-decoration-none text-white" href="{{route('products.create')}}">Добавить новый товар</a></button>
     </div>
 
