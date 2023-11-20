@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Product\StoreRequest;
+use App\Http\Requests\Product\UpdateRequest;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Tag;
@@ -21,15 +23,8 @@ class ProductController extends Controller
         return view('product.create', compact('brands', 'tags'));
     }
 
-    public function store(){
-        $data = request()->validate([
-            "title" => "required|string",
-            "description" => "string",
-            "price" => "integer",
-            "image" => "string",
-            "brand_id" => "",
-            'tags' => '',
-        ]);
+    public function store(StoreRequest $request){
+        $data = $request->validated();
         $tags = $data['tags'];
         unset($data['tags']);
         $product = Product::create($data);
@@ -48,15 +43,8 @@ class ProductController extends Controller
         return view('product.edit', compact('product', 'brands', 'tags'));
     }
 
-    public function update(Product $product){
-        $data = request()->validate([
-            "title" => "string",
-            "description" => "string",
-            "price" => "integer",
-            "image" => "string",
-            "brand_id" => "",
-            'tags' => '',
-        ]);
+    public function update(UpdateRequest $request, Product $product){
+        $data = $request->validated();
         $tags = $data['tags'];
         unset($data['tags']);
 
