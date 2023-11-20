@@ -25,11 +25,9 @@ class ProductController extends Controller
 
     public function store(StoreRequest $request){
         $data = $request->validated();
-        $tags = $data['tags'];
-        unset($data['tags']);
-        $product = Product::create($data);
 
-        $product->tags()->attach($tags);
+        $this->service->store($data);
+
         return redirect()->route('products.index');
     }
 
@@ -45,12 +43,9 @@ class ProductController extends Controller
 
     public function update(UpdateRequest $request, Product $product){
         $data = $request->validated();
-        $tags = $data['tags'];
-        unset($data['tags']);
 
-        $product->update($data);
+        $this->service->update($product, $data);
 
-        $product->tags()->sync($tags);
         return redirect()->route('products.show', $product->id);
 
 
