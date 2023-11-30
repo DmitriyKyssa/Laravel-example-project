@@ -1,7 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\Product\AdminController;
 use App\Http\Controllers\ProductController;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +16,7 @@ use App\Http\Controllers\ProductController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 // Routes for products (CRUD)
@@ -26,23 +28,18 @@ Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name
 Route::patch('/products/{product}', [ProductController::class, 'update'])->name('products.update');
 Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 
-
-// Routes for test page
-Route::get('/test', 'App\Http\Controllers\TestPageController@index')->name('test.index');
-Route::get('/test/create', "App\Http\Controllers\TestPageController@create");
-Route::get('/test/update', "App\Http\Controllers\TestPageController@update");
-Route::get('/test/delete', "App\Http\Controllers\TestPageController@delete");
-Route::get('/test/first-or-create', "App\Http\Controllers\TestPageController@firstOrCreate");
-Route::get('/test/update-or-create', "App\Http\Controllers\TestPageController@updateOrCreate");
-
-
-Route::get("/example-page", 'App\Http\Controllers\ExamplePageController@examplePage');
-
-Route::get('/contact', 'App\Http\Controllers\ContactPageController@contactPage')->name('contact.index');
-
-Route::get('/about', 'App\Http\Controllers\AboutPageController@index')->name('about.index');
-
-Route::get('/home', 'App\Http\Controllers\HomePageController@index')->name('home.index');
+// Route for admin
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function (){
+    Route::group(['namespace' => 'Post'], function (){
+        Route::get('/product', [AdminController::class, 'index'])->name('admin.product.index');
+        Route::get('/product/create', [AdminController::class, 'create'])->name('admin.product.create');
+        Route::post('/product', [AdminController::class, 'store'])->name('admin.product.store');
+        Route::get('/product/{product}', [AdminController::class, 'show'])->name('admin.product.show');
+        Route::get('/product/{product}/edit', [AdminController::class, 'edit'])->name('admin.product.edit');
+        Route::patch('/product/{product}', [AdminController::class, 'update'])->name('admin.product.update');
+        Route::delete('/product/{product}', [AdminController::class, 'destroy'])->name('admin.product.destroy');
+    });
+});
 
 Auth::routes();
 
