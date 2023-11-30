@@ -116,7 +116,7 @@
                 </div>
             </div>
 
-            @include('includes.admin.sidebar');
+            @include('includes.admin.sidebar')
 
         </div>
         <!-- /.sidebar -->
