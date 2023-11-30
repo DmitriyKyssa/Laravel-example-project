@@ -9,7 +9,7 @@ class Brand extends Model
 {
     use HasFactory;
 
-    public function products(){
-        return $this->hasMany(Brand::class, 'id', 'id');
+    public function product(){
+        return $this->hasMany(Product::class);
     }
 }
