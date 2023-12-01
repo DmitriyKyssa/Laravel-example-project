@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('auth.login');
-});
+})->name('home');
 
 // Routes for products (CRUD)
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
@@ -29,7 +29,7 @@ Route::patch('/products/{product}', [ProductController::class, 'update'])->name(
 Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 
 // Route for admin
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function (){
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admin'], function (){
     Route::group(['namespace' => 'Post'], function (){
         Route::get('/product', [AdminController::class, 'index'])->name('admin.product.index');
         Route::get('/product/create', [AdminController::class, 'create'])->name('admin.product.create');
