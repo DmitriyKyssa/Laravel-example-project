@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     public function index(){
+//        $this->authorize('view', auth()->user());
         $product = Product::paginate(10);
         return view('product.index', compact('product'));
 

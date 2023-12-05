@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
-{{--    <meta name="csrf-token" content="{{ csrf_token() }}">--}}
+    {{--    <meta name="csrf-token" content="{{ csrf_token() }}">--}}
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -21,16 +21,15 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
-{{--    <div>--}}
-{{--        <nav>--}}
-{{--            <ul>--}}
-{{--                <li><a href="{{ route('home.index') }}">Home</a></li>--}}
-{{--                <li><a href="{{ route('contact.index') }}">Contact</a></li>--}}
-{{--                <li><a href="{{ route('about.index') }}">About</a></li>--}}
-{{--                <li><a href="{{ route('test.index') }}">Test</a></li>--}}
-{{--            </ul>--}}
-{{--        </nav>--}}
-{{--    </div>--}}
-    @yield('content')
+<nav class="navbar navbar-expand-lg navbar-light bg-light container">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        @can('view', auth()->user())
+            <ul class="navbar-nav mr-auto">
+                <li><a class="nav-link" href="{{ route('admin.product.index') }}">Admin</a></li>
+            </ul>
+        @endcan
+    </div>
+</nav>
+@yield('content')
 </body>
 </html>
