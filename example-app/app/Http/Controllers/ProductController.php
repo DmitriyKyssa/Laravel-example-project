@@ -27,8 +27,15 @@ class ProductController extends Controller
     public function store(StoreRequest $request){
         $data = $request->validated();
 
-        $this->service->store($data);
-
+        $product = $this->service->store($data);
+//        dd($product);
+        $arr = [
+            "id" => $product->id,
+            "title" => $product->title,
+            "description" => $product->description,
+            "price" => $product->price
+        ];
+        return $arr;
         return redirect()->route('products.index');
     }
 
