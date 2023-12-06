@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Product\StoreRequest;
 use App\Http\Requests\Product\UpdateRequest;
+use App\Http\Resources\Product\ProductResource;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Tag;
@@ -14,7 +15,11 @@ class ProductController extends Controller
     public function index(){
 //        $this->authorize('view', auth()->user());
         $product = Product::paginate(10);
-        return view('product.index', compact('product'));
+
+        return ProductResource::collection($product);
+
+
+//        return view('product.index', compact('product'));
 
     }
 
@@ -29,13 +34,9 @@ class ProductController extends Controller
 
         $product = $this->service->store($data);
 //        dd($product);
-        $arr = [
-            "id" => $product->id,
-            "title" => $product->title,
-            "description" => $product->description,
-            "price" => $product->price
-        ];
-        return $arr;
+
+        return new ProductResource($product);
+
         return redirect()->route('products.index');
     }
 
