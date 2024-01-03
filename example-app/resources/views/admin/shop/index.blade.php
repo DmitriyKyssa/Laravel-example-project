@@ -26,7 +26,7 @@
                         <form action="{{route('admin.shop.destroy', $item->id)}}" method="post">
                             @csrf
                             @method('delete')
-                            <input class="btn btn-danger" type="submit" value="Удалить продукт">
+                            <input class="btn btn-danger" type="submit" value="Удалить магазин">
                         </form>
                     </td>
                 </tr>
