@@ -55,6 +55,12 @@ Route::group(['namespace' => 'Shop', 'prefix' => 'admin'], function (){
     });
 });
 
+// Excel export
+use App\Http\Controllers\ExportController;
+
+Route::get('/export', [ExportController::class, 'export']);
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

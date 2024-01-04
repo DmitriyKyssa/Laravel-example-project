@@ -2,6 +2,9 @@
 
 @section('content')
     <div class="container mt-5">
+        <div class="btn-group pb-3 pt-3" role="group" aria-label="Basic example">
+            <a href="{{url('/export')}}"><button type="button" class="btn btn-primary">Export Excel</button></a>
+        </div>
         <table class="table table-dark">
             <thead>
             <tr>
