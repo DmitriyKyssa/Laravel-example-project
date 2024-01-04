@@ -20,7 +20,8 @@ class ShopFactory extends Factory
         return [
             'shop_name' => $this->faker->text(10),
             'city_id' => City::get()->random()->id,
-            'address' => $this->faker->sentence(2)
+            'address' => $this->faker->sentence(2),
+            'number_of_employees' => $this->faker->numberBetween(1, 10)
         ];
     }
 }
