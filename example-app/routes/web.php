@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Product\AdminController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +41,25 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function (){
         Route::delete('/product/{product}', [AdminController::class, 'destroy'])->name('admin.product.destroy');
     });
 });
+
+// Route for shop
+Route::group(['namespace' => 'Shop', 'prefix' => 'admin'], function (){
+    Route::group(['namespace' => 'Post'], function (){
+        Route::get('/shop', [ShopController::class, 'index'])->name('admin.shop.index');
+        Route::get('/shop/create', [ShopController::class, 'create'])->name('admin.shop.create');
+        Route::post('/shop', [ShopController::class, 'store'])->name('admin.shop.store');
+        Route::get('/shop/{shop}', [ShopController::class, 'show'])->name('admin.shop.show');
+        Route::get('/shop/{shop}/edit', [ShopController::class, 'edit'])->name('admin.shop.edit');
+        Route::patch('/shop/{shop}', [ShopController::class, 'update'])->name('admin.shop.update');
+        Route::delete('/shop/{shop}', [ShopController::class, 'destroy'])->name('admin.shop.destroy');
+    });
+});
+
+// Excel export
+use App\Http\Controllers\ExportController;
+
+Route::get('/export', [ExportController::class, 'export']);
+
 
 Auth::routes();
 
